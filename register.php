@@ -6,7 +6,7 @@ class MpesaRegister
     const API_KEY="FVLxAEkNqp4LwFz7bN97OtlrCUd42AQM";
     const CONSUMER_SECRET="z8l5LvO6ccFZLnVN";
     const ACCESS_TOKEN_URL  = "https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials";
-    const BUSINESS_SHORTCODE = "600991";
+    const BUSINESS_SHORTCODE = "600983";
     const CONFIRMATION_URL = "http://161.35.6.91/finebreeze/register.php";
     const VALIDATION_URL = "http://161.35.6.91/finebreeze/register.php";
     const REGISTER_URL = "https://sandbox.safaricom.co.ke/mpesa/c2b/v1/registerurl";
