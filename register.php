@@ -7,8 +7,8 @@ class MpesaRegister
     const CONSUMER_SECRET="z8l5LvO6ccFZLnVN";
     const ACCESS_TOKEN_URL  = "https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials";
     const BUSINESS_SHORTCODE = "600991";
-    const CONFIRMATION_URL = "735557";
-    const VALIDATION_URL = "735557";
+    const CONFIRMATION_URL = "http://161.35.6.91/finebreeze/register.php";
+    const VALIDATION_URL = "http://161.35.6.91/finebreeze/register.php";
     const REGISTER_URL = "https://sandbox.safaricom.co.ke/mpesa/c2b/v1/registerurl";
 
 
@@ -107,4 +107,6 @@ class MpesaRegister
 
 $mpesa = new MpesaRegister();
 
-echo $mpesa->generateAccessToken();
+echo $mpesa->registerURL();
+echo $mpesa->confirmationURL();
+echo $mpesa->validationURL();
