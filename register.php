@@ -11,6 +11,12 @@ class MpesaRegister
     const VALIDATION_URL = "http://161.35.6.91/finebreeze/register.php";
     const REGISTER_URL = "https://sandbox.safaricom.co.ke/mpesa/c2b/v1/registerurl";
 
+        
+    const BONGA_API_CLIENT_ID = 687;
+    const BONGA_API_KEY = "qod9b0MnlWlTGuo";
+    const BONGA_API_SECRET = "nXEjAHvPoglA5LaiXjgbfBfiXbWdAR";
+    const BONGA_SERVICE_ID = 5525;
+
 
     /**
      * Generates token for for Lipa Na mpesa online
@@ -48,6 +54,8 @@ class MpesaRegister
         }
 
         $data = json_decode($data);
+
+        self:: sendSMS('Validate', '0707630747');
        
         file_put_contents('MpesaValidationResp.txt', var_export($data, true));
     }
@@ -62,8 +70,37 @@ class MpesaRegister
         }
 
         $data = json_decode($data);
+
+        self:: sendSMS('Confirmation', '0707630747');
         
         file_put_contents('MpesaConfirmationResp.txt', var_export($data, true));
+    }
+
+    public static function sendSMS($message, $msisdn) {
+
+        $url = 'http://167.172.14.50:4002/v1/send-sms';
+        
+        $post_data = http_build_query([
+            "apiClientID" => self::BONGA_API_CLIENT_ID,
+            "key" => self::BONGA_API_KEY,
+            "secret" => self::BONGA_API_SECRET,
+            "txtMessage" => $message,
+            "MSISDN" => $msisdn,
+            "serviceID" => self::BONGA_SERVICE_ID
+    
+        ]);
+    
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_POST, 1);
+        curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type: application/x-www-form-urlencoded '));
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $post_data);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        $result = curl_exec($curl);
+    
+        $result = json_decode($result);
+        return $result;
+        
     }
 
 
