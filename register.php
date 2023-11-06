@@ -55,7 +55,7 @@ class MpesaRegister
 
         $data = json_decode($data);
 
-        self:: sendSMS('Validate', '0707630747');
+        self::sendSMS('Validate', '0707630747');
        
         file_put_contents('MpesaValidationResp.txt', var_export($data, true));
     }
@@ -71,7 +71,7 @@ class MpesaRegister
 
         $data = json_decode($data);
 
-        self:: sendSMS('Confirmation', '0707630747');
+        self::sendSMS('Confirmation', '0707630747');
         
         file_put_contents('MpesaConfirmationResp.txt', var_export($data, true));
     }
